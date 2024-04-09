@@ -1,0 +1,14 @@
+"0","# Step 2: Calculate the weighted mean age and its standard error for this subgroup
+svymean(~agep_a, design=male_hypertension_data, na.rm=TRUE,deff=TRUE)
+"
+"1","      "
+"1","     mean"
+"1","       SE"
+"1","   DEff"
+"1","
+agep_a"
+"1"," 59.11568"
+"1","  0.26575"
+"1"," 1.4655"
+"1","
+"

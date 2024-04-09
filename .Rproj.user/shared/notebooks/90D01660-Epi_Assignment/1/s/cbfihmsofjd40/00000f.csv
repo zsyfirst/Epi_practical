@@ -1,0 +1,5 @@
+"0","survey_data <- svydesign(id=~ppsu, strata=~pstrat, weights=~wtfa_a, data=data , nest=TRUE)
+"
+"2","Error in svydesign(id = ~ppsu, strata = ~pstrat, weights = ~wtfa_a, data = data,  : 
+  could not find function ""svydesign""
+"
