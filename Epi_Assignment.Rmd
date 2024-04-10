@@ -71,23 +71,47 @@ obj<-svyby(~factor(maxed),
            ci=TRUE, deff=TRUE,na.rm=TRUE)
 
 
-barplot(obj,
-        legend.text=TRUE,
+# barplot(obj,
+#         legend.text=TRUE,
+#         axisnames = TRUE,
+#         names.arg = c('No Hypertension', 'Hypertension')) 
+
+barplot(obj, 
         axisnames = TRUE,
-        names.arg = c('No Hypertension', 'Hypertension')) 
+        names.arg = c('Normal Blood Pressure',
+                      'Hypertension'),
+        legend.text = c('High School education or less',
+                        'At Least Some College'),
+        legend.position = c(x = 3.5, y = 1), 
+        ylim = c(0,1))
 
-# Define the labels for the 'maxed' variable
-x_labels <- c("High School or Less", "At Least Some College")
+### change color 
+barplot(obj, 
+        axisnames = TRUE,
+        names.arg = c('Normal Blood Pressure', 'Hypertension'),
+        ylim = c(0,1.0),
+        col = c("lightgreen", "pink"))
 
+# Adding the legend separately with positioning
+legend(x = 3.3, y = 1, # Position of the legend
+       legend = c('High School education or less', 'At Least Some College'),
+       fill = c("lightgreen", "pink"))
 
 ```
 
 ```{r}
-fit <- svyglm( hypertension~ partner + maxed + sex + region, design=survey_data, family=quasibinomial(link="logit"))
+fit <- svyglm( factor(hypertension)~ factor(partner) + factor(maxed) + factor(sex) + factor(region), design=survey_data, family=quasibinomial(link="logit"))
 
 exp(coef(fit))
 exp(confint(fit))
 summary(fit)
 ```
 
+
+```{r}
+fit2 <- glm(  factor(hypertension) ~ factor(partner) + factor(maxed) + 
+    factor(sex) + factor(region), data = data, family=binomial(link = "logit"))
+summary(fit2)
+exp(coef(fit2))
+```
 
